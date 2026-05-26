@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from abc import ABC, abstractmethod
 
 
-from google_adk import Agent, tool 
+from google.adk import Agent
 
 load_dotenv()
 
@@ -57,8 +57,6 @@ class Teacher(Person):
 
 
 
-
-@tool
 def calculate_grade(name: str, scores: list[float]) -> dict:
     """
     Інструмент для розрахунку успішності.
@@ -103,6 +101,5 @@ SYSTEM_PROMPT = """
 
 root_agent = Agent(
     name="StudentSuccessAgent",
-    instructions=SYSTEM_PROMPT,
     tools=[calculate_grade]
 )
